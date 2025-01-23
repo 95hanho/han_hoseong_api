@@ -34,8 +34,11 @@ public class MenuController {
 		
 		List<Parent_menu> menus = menuService.getMenus();
 		
-		System.out.println();
+		System.out.println(menus);
 		
+		result.put("menus", menus);
+		result.put("version", 1);
+		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
