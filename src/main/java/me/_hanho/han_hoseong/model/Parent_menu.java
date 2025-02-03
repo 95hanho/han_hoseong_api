@@ -6,6 +6,7 @@ public class Parent_menu {
 	
 	private int parent_menu_id;
 	private String parent_name;
+	private boolean frame_on;
 	
 	private List<Menu> menu_list;
 	
@@ -26,6 +27,14 @@ public class Parent_menu {
 		this.menu_list = menu_list;
 	}
 	
+	public Parent_menu(int parent_menu_id, String parent_name, boolean frame_on, List<Menu> menu_list) {
+		super();
+		this.parent_menu_id = parent_menu_id;
+		this.parent_name = parent_name;
+		this.frame_on = frame_on;
+		this.menu_list = menu_list;
+	}
+
 	public List<Menu> getMenu_list() {
 		return menu_list;
 	}
@@ -49,11 +58,19 @@ public class Parent_menu {
 	public void setParent_name(String parent_name) {
 		this.parent_name = parent_name;
 	}
+	
+	public boolean isFrame_on() {
+		return frame_on;
+	}
+
+	public void setFrame_on(boolean frame_on) {
+		this.frame_on = frame_on;
+	}
 
 	@Override
 	public String toString() {
-		return "Parent_menu [parent_menu_id=" + parent_menu_id + ", parent_name=" + parent_name + "]";
+		return "Parent_menu [parent_menu_id=" + parent_menu_id + ", parent_name=" + parent_name + ", frame_on="
+				+ frame_on + ", menu_list=" + menu_list + "]";
 	}
-	
 
 }
