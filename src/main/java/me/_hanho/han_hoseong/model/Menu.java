@@ -7,6 +7,7 @@ public class Menu {
 	private String url;
 	private String icon;
 	private int parent_menu_id;
+	private String color;
 	
 	public Menu() {
 		// TODO Auto-generated constructor stub
@@ -19,6 +20,16 @@ public class Menu {
 		this.url = url;
 		this.icon = icon;
 		this.parent_menu_id = parent_menu_id;
+	}
+	
+	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color) {
+		super();
+		this.menu_id = menu_id;
+		this.name = name;
+		this.url = url;
+		this.icon = icon;
+		this.parent_menu_id = parent_menu_id;
+		this.color = color;
 	}
 
 	public int getMenu_id() {
@@ -61,11 +72,18 @@ public class Menu {
 		this.parent_menu_id = parent_menu_id;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Override
 	public String toString() {
 		return "Menu [menu_id=" + menu_id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", parent_menu_id="
-				+ parent_menu_id + "]";
+				+ parent_menu_id + ", color=" + color + "]";
 	}
-	
-	
+
 }
