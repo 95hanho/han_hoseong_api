@@ -23,4 +23,8 @@ public class MenuRepository {
 		return menuMapper.getMenus(parent_menu_id);
 	}
 
+	public void setMenus(Menu menu) {
+		menuMapper.setMenus(menu);
+	}
+
 }
