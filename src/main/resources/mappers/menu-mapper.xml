@@ -15,4 +15,17 @@
 		SET icon = #{icon}, color=#{color}
 		WHERE menu_id=#{menu_id}
 	</update>
+	<select id="has_quick">
+		SELECT COUNT(*)
+		FROM hhs_quick
+		WHERE quick_id = #{quick_id}
+	</select>
+	<delete id="delete_over_quick">
+		DELETE FROM hhs_quick
+		WHERE quick_id > #{size}
+	</delete>
+	<insert id="create_quick">
+		INSERT INTO hhs_quick(quick_id) 
+		VALUES (#{quick_id})
+	</insert>
 </mapper>

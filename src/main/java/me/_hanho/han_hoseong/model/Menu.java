@@ -9,20 +9,15 @@ public class Menu {
 	private int parent_menu_id;
 	private String color;
 	
+	private int quick_id;
+	private int quick_menu_order; // 퀵메뉴 안 메뉴리스트의 순서
+	
 	public Menu() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id) {
-		super();
-		this.menu_id = menu_id;
-		this.name = name;
-		this.url = url;
-		this.icon = icon;
-		this.parent_menu_id = parent_menu_id;
-	}
-	
-	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color) {
+	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color, int quick_id,
+			int quick_menu_order) {
 		super();
 		this.menu_id = menu_id;
 		this.name = name;
@@ -30,6 +25,8 @@ public class Menu {
 		this.icon = icon;
 		this.parent_menu_id = parent_menu_id;
 		this.color = color;
+		this.quick_id = quick_id;
+		this.quick_menu_order = quick_menu_order;
 	}
 
 	public int getMenu_id() {
@@ -80,10 +77,28 @@ public class Menu {
 		this.color = color;
 	}
 
+	public int getQuick_id() {
+		return quick_id;
+	}
+
+	public void setQuick_id(int quick_id) {
+		this.quick_id = quick_id;
+	}
+
+	public int getQuick_menu_order() {
+		return quick_menu_order;
+	}
+
+	public void setQuick_menu_order(int quick_menu_order) {
+		this.quick_menu_order = quick_menu_order;
+	}
+
 	@Override
 	public String toString() {
 		return "Menu [menu_id=" + menu_id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", parent_menu_id="
-				+ parent_menu_id + ", color=" + color + "]";
+				+ parent_menu_id + ", color=" + color + ", quick_id=" + quick_id + ", quick_menu_order="
+				+ quick_menu_order + "]";
 	}
+	
 
 }
