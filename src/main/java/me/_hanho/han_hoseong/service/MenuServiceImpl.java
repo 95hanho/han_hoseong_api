@@ -27,4 +27,9 @@ public class MenuServiceImpl implements MenuService {
 		return parent_menus;
 	}
 
+	@Override
+	public void setMenus(Menu menu) {
+		menuDAO.setMenus(menu);
+	}
+
 }

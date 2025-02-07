@@ -10,4 +10,9 @@
 		FROM hhs_menu
 		WHERE parent_menu_id = #{parent_menu_id}
 	</select>
+	<update id="setMenus">
+		UPDATE hhs_menu
+		SET icon = #{icon}, color=#{color}
+		WHERE menu_id=#{menu_id}
+	</update>
 </mapper>

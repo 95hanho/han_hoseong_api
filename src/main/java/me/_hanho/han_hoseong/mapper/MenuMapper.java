@@ -14,4 +14,6 @@ public interface MenuMapper {
 
 	List<Menu> getMenus(int parent_menu_id);
 
+	void setMenus(Menu menu);
+
 }
