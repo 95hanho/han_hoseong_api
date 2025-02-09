@@ -33,29 +33,39 @@ public class MenuServiceImpl implements MenuService {
 	public void setMenus(Menu menu) {
 		menuDAO.setMenus(menu);
 	}
+
+	@Override
+	public List<Quick> get_quicks() {
+		return menuDAO.get_quicks();
+	}
 	
 	@Override
 	@Transactional
 	public void set_quicks(ArrayList<Quick> quickList) {
-		delete_over_quick(quickList.size()); // 퀵리스트보다 큰 리스트는 없애줌
+		delete_all_quick(); // 퀵리스트 초기화
+		menuDAO.reset_menu_quick(); // 메뉴의 quick관련 초기화
+		System.out.println(1);
 		for(int i = 0; i < quickList.size(); i++) {
 			Quick quick = quickList.get(i);
-			int has_quick = menuDAO.has_quick(quick.getQuick_id()); 
-			if(has_quick > 0) {
-				menuDAO.create_quick(quick);
-			}
+			quick.setQuick_id(i + 1);
+			menuDAO.create_quick(quick);
+			System.out.println(2);
+			//
 			List<Menu> menus = quick.getMenus();
+			System.out.println(3);
 			for(int i2 = 0; i2 < menus.size(); i2++) {
 				Menu menu = menus.get(i2);
-				
+				menu.setQuick_id(i + 1);
+				menu.setQuick_menu_order(i2 + 1);
+				menuDAO.set_menu_order(menu);
+				System.out.println(4);
 			}
 		}
 	}
 
 	@Override
-	public void delete_over_quick(int size) {
-		menuDAO.delete_over_quick(size);
+	public void delete_all_quick() {
+		menuDAO.delete_all_quick();
 	}
-
 
 }

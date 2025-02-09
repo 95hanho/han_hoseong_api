@@ -58,13 +58,13 @@ public class MenuController {
 	}
 	// 퀵메뉴 가져오기
 	@GetMapping("/quick")
-	public ResponseEntity<Map<String, Object>> get_quicks(@ModelAttribute Menu menu) {
+	public ResponseEntity<Map<String, Object>> get_quicks() {
 		logger.info("get_quicks");
-		System.out.println(menu);
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		menuService.setMenus(menu);
+		List<Quick> quickList = menuService.get_quicks();
 		
+		result.put("quickList", quickList);
 		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
@@ -74,16 +74,9 @@ public class MenuController {
 		logger.info("set_quicks");
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		System.out.println(quickList);
-		for(int i = 0; i < quickList.size(); i++) {
-			Quick quick = quickList.get(i);
-			quick.setQuick_id(i + 1);
-			List<Menu> menus = quick.getMenus();
-			for(int i2 = 0; i2 < menus.size(); i2++) {
-				Menu menu = menus.get(i2);
-				menu.setQuick_id(i + 1);
-				menu.setQuick_menu_order(i2);
-			}
+		System.out.println("quickList.size() : " + quickList.size());
+		for(Quick quick : quickList) {
+			System.out.println("quick.getMenus().size() : " + quick.getMenus().size());
 		}
 		menuService.set_quicks(quickList);
 		

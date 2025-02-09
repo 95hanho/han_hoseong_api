@@ -27,17 +27,32 @@ public class MenuRepository {
 	public void setMenus(Menu menu) {
 		menuMapper.setMenus(menu);
 	}
-
-	public int has_quick(int quick_id) {
-		return menuMapper.has_quick(quick_id);
+	
+	public List<Quick> get_quicks() {
+		List<Quick> quickList = menuMapper.get_quicks();
+		for(Quick quick : quickList) {
+			List<Menu> menus = menuMapper.get_quick_menus(quick);
+			quick.setMenus(menus);
+		}
+		return quickList; 
 	}
 
-	public void delete_over_quick(int size) {
-		menuMapper.delete_over_quick(size);
+	public void delete_all_quick() {
+		menuMapper.delete_all_quick();
 	}
 
 	public void create_quick(Quick quick) {
 		menuMapper.create_quick(quick);
 	}
+
+	public void reset_menu_quick() {
+		menuMapper.reset_menu_quick();
+	}
+
+	public void set_menu_order(Menu menu) {
+		menuMapper.set_menu_order(menu);
+	}
+
+
 
 }

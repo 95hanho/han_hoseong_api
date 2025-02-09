@@ -16,11 +16,21 @@ public interface MenuMapper {
 	List<Menu> getMenus(int parent_menu_id);
 
 	void setMenus(Menu menu);
+	
+	List<Quick> get_quicks();
+	
+	List<Menu> get_quick_menus(Quick quick);
 
-	int has_quick(int quick_id);
-
-	void delete_over_quick(int size);
+	void delete_all_quick();
 
 	void create_quick(Quick quick);
+
+	void reset_menu_quick();
+
+	void set_menu_order(Menu menu);
+
+
+
+
 
 }

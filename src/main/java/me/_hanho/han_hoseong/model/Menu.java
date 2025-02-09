@@ -6,8 +6,12 @@ public class Menu {
 	private String name;
 	private String url;
 	private String icon;
+	
 	private int parent_menu_id;
 	private String color;
+	
+	private String parent; // 부모메뉴 이름
+	private boolean frame_on; // iframe 지원하는지
 	
 	private int quick_id;
 	private int quick_menu_order; // 퀵메뉴 안 메뉴리스트의 순서
@@ -15,9 +19,9 @@ public class Menu {
 	public Menu() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color, int quick_id,
-			int quick_menu_order) {
+	
+	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color, String parent,
+			boolean frame_on, int quick_id, int quick_menu_order) {
 		super();
 		this.menu_id = menu_id;
 		this.name = name;
@@ -25,6 +29,8 @@ public class Menu {
 		this.icon = icon;
 		this.parent_menu_id = parent_menu_id;
 		this.color = color;
+		this.parent = parent;
+		this.frame_on = frame_on;
 		this.quick_id = quick_id;
 		this.quick_menu_order = quick_menu_order;
 	}
@@ -92,13 +98,28 @@ public class Menu {
 	public void setQuick_menu_order(int quick_menu_order) {
 		this.quick_menu_order = quick_menu_order;
 	}
+	
+	public String getParent() {
+		return parent;
+	}
+
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
+	
+	public boolean isFrame_on() {
+		return frame_on;
+	}
+
+	public void setFrame_on(boolean frame_on) {
+		this.frame_on = frame_on;
+	}
 
 	@Override
 	public String toString() {
 		return "Menu [menu_id=" + menu_id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", parent_menu_id="
-				+ parent_menu_id + ", color=" + color + ", quick_id=" + quick_id + ", quick_menu_order="
-				+ quick_menu_order + "]";
+				+ parent_menu_id + ", color=" + color + ", parent=" + parent + ", frame_on=" + frame_on + ", quick_id="
+				+ quick_id + ", quick_menu_order=" + quick_menu_order + "]";
 	}
-	
 
 }

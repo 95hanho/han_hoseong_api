@@ -6,26 +6,44 @@
 		FROM hhs_parent_menu
 	</select>
 	<select id="getMenus">
-		SELECT *
-		FROM hhs_menu
-		WHERE parent_menu_id = #{parent_menu_id}
+		SELECT menu_id, name, url, icon, color, hm.parent_menu_id, quick_id, quick_menu_order, hpm.parent_name AS parent, frame_on
+		FROM hhs_menu hm
+		JOIN hhs_parent_menu hpm ON hm.parent_menu_id = hpm.parent_menu_id
+		WHERE hm.parent_menu_id = #{parent_menu_id}
 	</select>
 	<update id="setMenus">
 		UPDATE hhs_menu
 		SET icon = #{icon}, color=#{color}
 		WHERE menu_id=#{menu_id}
 	</update>
-	<select id="has_quick">
-		SELECT COUNT(*)
+	<select id="get_quicks">
+		SELECT *
 		FROM hhs_quick
-		WHERE quick_id = #{quick_id}
 	</select>
-	<delete id="delete_over_quick">
-		DELETE FROM hhs_quick
-		WHERE quick_id > #{size}
+	<select id="get_quick_menus">
+		SELECT menu_id, name, url, icon, color, hm.parent_menu_id, quick_id, quick_menu_order, hpm.parent_name AS parent, frame_on
+		FROM hhs_menu hm
+		JOIN hhs_parent_menu hpm ON hm.parent_menu_id = hpm.parent_menu_id
+		WHERE quick_id = #{quick_id}
+		ORDER BY quick_menu_order
+	</select>
+	<delete id="delete_all_quick">
+		<!-- DELETE FROM hhs_quick
+		WHERE TRUE -->
+		TRUNCATE TABLE hhs_quick
 	</delete>
 	<insert id="create_quick">
 		INSERT INTO hhs_quick(quick_id) 
 		VALUES (#{quick_id})
 	</insert>
+	<update id="reset_menu_quick">
+		UPDATE hhs_menu
+		SET quick_id = null, quick_menu_order = null
+		WHERE quick_id != null;
+	</update>
+	<update id="set_menu_order">
+		UPDATE hhs_menu
+		SET quick_id = #{quick_id}, quick_menu_order = #{quick_menu_order}
+		WHERE menu_id = #{menu_id}
+	</update>
 </mapper>

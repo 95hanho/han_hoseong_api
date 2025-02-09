@@ -12,9 +12,13 @@ public interface MenuService {
 	List<Parent_menu> getMenus();
 
 	void setMenus(Menu menu);
+	
+	List<Quick> get_quicks();
 
 	void set_quicks(ArrayList<Quick> quickList);
 	
-	void delete_over_quick(int size);
+	void delete_all_quick();
+
+
 
 }
