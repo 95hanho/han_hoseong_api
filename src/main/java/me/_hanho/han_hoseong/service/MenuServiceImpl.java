@@ -64,10 +64,18 @@ public class MenuServiceImpl implements MenuService {
 	public void delete_all_quick() {
 		menuDAO.delete_all_quick();
 	}
+	
+	@Override
+	public void create_folder(Icon icon) {
+		menuDAO.create_folder(icon);
+	}
 
 	@Override
-	public void set_icons(ArrayList<Icon> icons) {
-		
+	public void set_icon(Icon icon) {
+		menuDAO.set_icon(icon);
 	}
+
+
+
 
 }

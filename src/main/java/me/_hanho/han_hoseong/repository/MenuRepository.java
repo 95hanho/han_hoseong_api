@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import me._hanho.han_hoseong.mapper.MenuMapper;
+import me._hanho.han_hoseong.model.Icon;
 import me._hanho.han_hoseong.model.Menu;
 import me._hanho.han_hoseong.model.Parent_menu;
 import me._hanho.han_hoseong.model.Quick;
@@ -52,6 +53,17 @@ public class MenuRepository {
 	public void set_menu_order(Menu menu) {
 		menuMapper.set_menu_order(menu);
 	}
+
+	public void create_folder(Icon icon) {
+		System.out.println("123212");
+		menuMapper.create_folder(icon);
+		System.out.println("3333");
+	}
+	
+	public void set_icon(Icon icon) {
+		menuMapper.set_icon(icon);
+	}
+
 
 
 

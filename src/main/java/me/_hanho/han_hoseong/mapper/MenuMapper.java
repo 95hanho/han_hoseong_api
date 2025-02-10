@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import me._hanho.han_hoseong.model.Icon;
 import me._hanho.han_hoseong.model.Menu;
 import me._hanho.han_hoseong.model.Parent_menu;
 import me._hanho.han_hoseong.model.Quick;
@@ -29,8 +30,10 @@ public interface MenuMapper {
 
 	void set_menu_order(Menu menu);
 
+	void create_folder(Icon icon);
+	
+	void set_icon(Icon icon);
 
-
-
+	
 
 }

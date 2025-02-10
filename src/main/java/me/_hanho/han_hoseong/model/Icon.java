@@ -1,7 +1,5 @@
 package me._hanho.han_hoseong.model;
 
-import java.util.List;
-
 public class Icon extends Menu {
 
 	private int icon_id;
@@ -9,13 +7,24 @@ public class Icon extends Menu {
 	private int col;
 	private String name;
 	private boolean folder;
-	private List<Icon> children;
 	
 	private int folder_icon_id;
 	private int menu_id;
 	
 	public Icon() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Icon(int icon_id, int row, int col, String name, boolean folder, int folder_icon_id,
+			int menu_id) {
+		super();
+		this.icon_id = icon_id;
+		this.row = row;
+		this.col = col;
+		this.name = name;
+		this.folder = folder;
+		this.folder_icon_id = folder_icon_id;
+		this.menu_id = menu_id;
 	}
 
 	public int getIcon_id() {
@@ -58,14 +67,6 @@ public class Icon extends Menu {
 		this.folder = folder;
 	}
 
-	public List<Icon> getChildren() {
-		return children;
-	}
-
-	public void setChildren(List<Icon> children) {
-		this.children = children;
-	}
-
 	public int getFolder_icon_id() {
 		return folder_icon_id;
 	}
@@ -85,7 +86,7 @@ public class Icon extends Menu {
 	@Override
 	public String toString() {
 		return "Icon [icon_id=" + icon_id + ", row=" + row + ", col=" + col + ", name=" + name + ", folder=" + folder
-				+ ", children=" + children + ", folder_icon_id=" + folder_icon_id + ", menu_id=" + menu_id + "]";
+				+ ", folder_icon_id=" + folder_icon_id + ", menu_id=" + menu_id + "]";
 	}
 	
 }

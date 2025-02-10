@@ -46,4 +46,8 @@
 		SET quick_id = #{quick_id}, quick_menu_order = #{quick_menu_order}
 		WHERE menu_id = #{menu_id}
 	</update>
+	<insert id="create_folder">
+		INSERT INTO hhs_icon(`row`, `col`, `folder`)
+		VALUES (#{row}, #{col}, CASE WHEN #{folder} THEN 1 ELSE 0 END)
+	</insert>
 </mapper>

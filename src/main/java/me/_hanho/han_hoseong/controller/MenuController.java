@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import me._hanho.han_hoseong.model.Icon;
@@ -81,7 +82,7 @@ public class MenuController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	// 아이콘 가져오기
-	@GetMapping("/icons")
+	@GetMapping("/icon")
 	public ResponseEntity<Map<String, Object>> get_icons() {
 		logger.info("get_icons");
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -93,13 +94,20 @@ public class MenuController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	// 아이콘 설정하기
-	@PostMapping("/icons")
-	public ResponseEntity<Map<String, Object>> set_icons(@RequestBody ArrayList<Icon> icons) {
+	@PostMapping("/icon")
+	public ResponseEntity<Map<String, Object>> set_icons(@ModelAttribute Icon icon, @RequestParam("type") String type) {
 		logger.info("set_icons");
 		Map<String, Object> result = new HashMap<String, Object>();
 
-		System.out.println(icons);
-		menuService.set_icons(icons);
+		System.out.println(type);
+		System.out.println(icon);
+		
+		// 폴더 생성
+		if(type.equals("create_folder")) {
+			menuService.create_folder(icon);
+		}
+		
+//		menuService.set_icon(icon);
 		
 		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);

@@ -19,9 +19,11 @@ public interface MenuService {
 	void set_quicks(ArrayList<Quick> quickList);
 	
 	void delete_all_quick();
+	
+	void create_folder(Icon icon);
 
-	void set_icons(ArrayList<Icon> icons);
+	void set_icon(Icon icon);
 
-
+	
 
 }
