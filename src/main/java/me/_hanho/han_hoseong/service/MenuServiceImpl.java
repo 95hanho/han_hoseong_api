@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import me._hanho.han_hoseong.model.Icon;
 import me._hanho.han_hoseong.model.Menu;
 import me._hanho.han_hoseong.model.Parent_menu;
 import me._hanho.han_hoseong.model.Quick;
@@ -62,6 +63,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public void delete_all_quick() {
 		menuDAO.delete_all_quick();
+	}
+
+	@Override
+	public void set_icons(ArrayList<Icon> icons) {
+		
 	}
 
 }
