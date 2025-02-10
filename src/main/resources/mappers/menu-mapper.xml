@@ -33,13 +33,13 @@
 		TRUNCATE TABLE hhs_quick
 	</delete>
 	<insert id="create_quick">
-		INSERT INTO hhs_quick(quick_id) 
-		VALUES (#{quick_id})
+		INSERT INTO hhs_quick(quick_id, name) 
+		VALUES (#{quick_id}, #{name})
 	</insert>
 	<update id="reset_menu_quick">
 		UPDATE hhs_menu
-		SET quick_id = null, quick_menu_order = null
-		WHERE quick_id != null;
+		SET quick_id = NULL, quick_menu_order = NULL
+		WHERE quick_id IS NOT NULL OR quick_menu_order IS NOT NULL;
 	</update>
 	<update id="set_menu_order">
 		UPDATE hhs_menu

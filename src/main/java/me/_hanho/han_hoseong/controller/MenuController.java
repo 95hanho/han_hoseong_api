@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import me._hanho.han_hoseong.model.Icon;
 import me._hanho.han_hoseong.model.Menu;
 import me._hanho.han_hoseong.model.Parent_menu;
 import me._hanho.han_hoseong.model.Quick;
@@ -74,11 +75,31 @@ public class MenuController {
 		logger.info("set_quicks");
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		System.out.println("quickList.size() : " + quickList.size());
-		for(Quick quick : quickList) {
-			System.out.println("quick.getMenus().size() : " + quick.getMenus().size());
-		}
 		menuService.set_quicks(quickList);
+		
+		result.put("msg", "SUCCESS");
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	// 아이콘 가져오기
+	@GetMapping("/icons")
+	public ResponseEntity<Map<String, Object>> get_icons() {
+		logger.info("get_icons");
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<Quick> quickList = menuService.get_quicks();
+		
+		result.put("quickList", quickList);
+		result.put("msg", "SUCCESS");
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	// 아이콘 설정하기
+	@PostMapping("/icons")
+	public ResponseEntity<Map<String, Object>> set_icons(@RequestBody ArrayList<Icon> icons) {
+		logger.info("set_icons");
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		System.out.println(icons);
+		menuService.set_icons(icons);
 		
 		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);

@@ -6,13 +6,12 @@ public class Menu {
 	private String name;
 	private String url;
 	private String icon;
-	
-	private int parent_menu_id;
 	private String color;
-	
+	// 부모메뉴 관련
+	private int parent_menu_id;
 	private String parent; // 부모메뉴 이름
 	private boolean frame_on; // iframe 지원하는지
-	
+	// 퀵메뉴 관련
 	private int quick_id;
 	private int quick_menu_order; // 퀵메뉴 안 메뉴리스트의 순서
 	

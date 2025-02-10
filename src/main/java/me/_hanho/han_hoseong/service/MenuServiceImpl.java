@@ -44,21 +44,17 @@ public class MenuServiceImpl implements MenuService {
 	public void set_quicks(ArrayList<Quick> quickList) {
 		delete_all_quick(); // 퀵리스트 초기화
 		menuDAO.reset_menu_quick(); // 메뉴의 quick관련 초기화
-		System.out.println(1);
 		for(int i = 0; i < quickList.size(); i++) {
 			Quick quick = quickList.get(i);
 			quick.setQuick_id(i + 1);
 			menuDAO.create_quick(quick);
-			System.out.println(2);
 			//
 			List<Menu> menus = quick.getMenus();
-			System.out.println(3);
 			for(int i2 = 0; i2 < menus.size(); i2++) {
 				Menu menu = menus.get(i2);
 				menu.setQuick_id(i + 1);
 				menu.setQuick_menu_order(i2 + 1);
 				menuDAO.set_menu_order(menu);
-				System.out.println(4);
 			}
 		}
 	}
