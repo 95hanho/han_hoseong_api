@@ -53,6 +53,10 @@ public class MenuRepository {
 	public void set_menu_order(Menu menu) {
 		menuMapper.set_menu_order(menu);
 	}
+	
+	public List<Icon> get_icons() {
+		return menuMapper.get_icons();
+	}
 
 	public void create_folder(Icon icon) {
 		System.out.println("123212");
@@ -60,9 +64,17 @@ public class MenuRepository {
 		System.out.println("3333");
 	}
 	
+	public Icon select_latest_icon() {
+		return menuMapper.select_latest_icon();
+	}
+	
 	public void set_icon(Icon icon) {
 		menuMapper.set_icon(icon);
 	}
+
+
+
+
 
 
 

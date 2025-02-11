@@ -1,30 +1,48 @@
 package me._hanho.han_hoseong.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Icon extends Menu {
 
 	private int icon_id;
 	private int row;
 	private int col;
-	private String name;
+	private String folder_name = "";
 	private boolean folder;
 	
 	private int folder_icon_id;
 	private int menu_id;
 	
+	private List<Icon> children = new ArrayList<>();
+	
 	public Icon() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Icon(int icon_id, int row, int col, String name, boolean folder, int folder_icon_id,
+	public Icon(int icon_id, int row, int col, String folder_name, boolean folder, int folder_icon_id,
 			int menu_id) {
 		super();
 		this.icon_id = icon_id;
 		this.row = row;
 		this.col = col;
-		this.name = name;
+		this.folder_name = folder_name;
 		this.folder = folder;
 		this.folder_icon_id = folder_icon_id;
 		this.menu_id = menu_id;
+	}
+	
+	public Icon(int icon_id, int row, int col, String folder_name, boolean folder, int folder_icon_id, int menu_id,
+			List<Icon> children) {
+		super();
+		this.icon_id = icon_id;
+		this.row = row;
+		this.col = col;
+		this.folder_name = folder_name;
+		this.folder = folder;
+		this.folder_icon_id = folder_icon_id;
+		this.menu_id = menu_id;
+		this.children = children;
 	}
 
 	public int getIcon_id() {
@@ -51,12 +69,12 @@ public class Icon extends Menu {
 		this.col = col;
 	}
 
-	public String getName() {
-		return name;
+	public String getFolder_name() {
+		return folder_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFolder_name(String name) {
+		this.folder_name = name;
 	}
 
 	public boolean isFolder() {
@@ -82,10 +100,18 @@ public class Icon extends Menu {
 	public void setMenu_id(int menu_id) {
 		this.menu_id = menu_id;
 	}
+	
+	public List<Icon> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Icon> children) {
+		this.children = children;
+	}
 
 	@Override
 	public String toString() {
-		return "Icon [icon_id=" + icon_id + ", row=" + row + ", col=" + col + ", name=" + name + ", folder=" + folder
+		return "Icon [icon_id=" + icon_id + ", row=" + row + ", col=" + col + ", folder_name=" + folder_name + ", folder=" + folder
 				+ ", folder_icon_id=" + folder_icon_id + ", menu_id=" + menu_id + "]";
 	}
 	

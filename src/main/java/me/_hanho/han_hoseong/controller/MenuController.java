@@ -87,9 +87,9 @@ public class MenuController {
 		logger.info("get_icons");
 		Map<String, Object> result = new HashMap<String, Object>();
 		
-		List<Quick> quickList = menuService.get_quicks();
+		List<Icon> icons = menuService.get_icons();
 		
-		result.put("quickList", quickList);
+		result.put("icons", icons);
 		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
@@ -105,6 +105,8 @@ public class MenuController {
 		// 폴더 생성
 		if(type.equals("create_folder")) {
 			menuService.create_folder(icon);
+			Icon latest_folder = menuService.select_latest_icon();
+			
 		}
 		
 //		menuService.set_icon(icon);

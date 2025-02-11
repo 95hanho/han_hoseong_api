@@ -30,10 +30,13 @@ public interface MenuMapper {
 
 	void set_menu_order(Menu menu);
 
+	List<Icon> get_icons();
+
 	void create_folder(Icon icon);
+	
+	Icon select_latest_icon();
 	
 	void set_icon(Icon icon);
 
-	
 
 }

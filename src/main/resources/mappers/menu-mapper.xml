@@ -46,8 +46,22 @@
 		SET quick_id = #{quick_id}, quick_menu_order = #{quick_menu_order}
 		WHERE menu_id = #{menu_id}
 	</update>
+	<select id="get_icons">
+		SELECT icon_id, `row`, col, folder, folder_name, folder_icon_id, i.menu_id, m.name, m.url, m.icon, m.color, pm.parent_name AS parent
+		FROM hhs_icon i
+		LEFT JOIN hhs_menu m ON i.menu_id = m.menu_id
+		LEFT JOIN hhs_parent_menu pm ON m.parent_menu_id = pm.parent_menu_id
+	</select>
 	<insert id="create_folder">
-		INSERT INTO hhs_icon(`row`, `col`, `folder`)
-		VALUES (#{row}, #{col}, CASE WHEN #{folder} THEN 1 ELSE 0 END)
+		INSERT INTO hhs_icon(`row`, col, folder, folder_name)
+		VALUES (#{row}, #{col}, CASE WHEN #{folder} THEN 1 ELSE 0 END, #{folder_name})
 	</insert>
+	<select id="select_latest_icon">
+		SELECT icon_id, `row`, col, folder, folder_name, folder_icon_id, i.menu_id, m.name, m.url, m.icon, m.color, pm.parent_name AS parent
+		FROM hhs_icon i
+		LEFT JOIN hhs_menu m ON i.menu_id = m.menu_id
+		LEFT JOIN hhs_parent_menu pm ON m.parent_menu_id = pm.parent_menu_id
+		ORDER BY icon_id DESC
+		LIMIT 1
+	</select>
 </mapper>
