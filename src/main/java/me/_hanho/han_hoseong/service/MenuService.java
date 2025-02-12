@@ -22,11 +22,20 @@ public interface MenuService {
 
 	List<Icon> get_icons();
 	
-	void create_folder(Icon icon);
-	
 	Icon select_latest_icon();
 
+	void create_folder(Icon icon);
+	
+	void create_icon(Icon icon);
+	
+	void update_icon(Icon icon);
+	
 	void set_icon(Icon icon);
+	
+	void delete_icon(int icon_id);
+
+
+
 
 
 

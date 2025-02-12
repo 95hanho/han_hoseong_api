@@ -1,5 +1,6 @@
 package me._hanho.han_hoseong.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,22 +56,43 @@ public class MenuRepository {
 	}
 	
 	public List<Icon> get_icons() {
-		return menuMapper.get_icons();
-	}
-
-	public void create_folder(Icon icon) {
-		System.out.println("123212");
-		menuMapper.create_folder(icon);
-		System.out.println("3333");
+		 List<Icon> icons = new ArrayList<>();
+		 List<Icon> real_icons = menuMapper.get_icons();
+		 List<Icon> folders = menuMapper.get_folders();
+		 for(Icon folder : folders) {
+			 List<Icon> child_icons = menuMapper.get_child_icons(folder.getIcon_id());
+			 folder.getChildren().addAll(child_icons);
+		 }
+		 icons.addAll(real_icons);
+		 icons.addAll(folders);
+		return icons;
 	}
 	
 	public Icon select_latest_icon() {
 		return menuMapper.select_latest_icon();
 	}
 	
+	public void create_folder(Icon icon) {
+		menuMapper.create_folder(icon);
+	}
+	
+	public void create_icon(Icon icon) {
+		menuMapper.create_icon(icon);
+	}
+
+	public void update_icon(Icon icon) {
+		menuMapper.update_icon(icon);
+	}
+	
 	public void set_icon(Icon icon) {
 		menuMapper.set_icon(icon);
 	}
+
+	public void delete_icon(int icon_id) {
+		menuMapper.delete_icon(icon_id);
+	}
+
+
 
 
 

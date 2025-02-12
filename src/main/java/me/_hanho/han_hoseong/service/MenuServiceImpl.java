@@ -71,19 +71,36 @@ public class MenuServiceImpl implements MenuService {
 	}
 	
 	@Override
+	public Icon select_latest_icon() {
+		return menuDAO.select_latest_icon();
+	}
+	
+	@Override
 	public void create_folder(Icon icon) {
 		menuDAO.create_folder(icon);
 	}
 	
 	@Override
-	public Icon select_latest_icon() {
-		return menuDAO.select_latest_icon();
+	public void create_icon(Icon icon) {
+		menuDAO.create_icon(icon);
+	}
+	
+	@Override
+	public void update_icon(Icon icon) {
+		menuDAO.update_icon(icon);
 	}
 
 	@Override
 	public void set_icon(Icon icon) {
 		menuDAO.set_icon(icon);
 	}
+
+	@Override
+	public void delete_icon(int icon_id) {
+		menuDAO.delete_icon(icon_id);
+	}
+
+
 
 
 

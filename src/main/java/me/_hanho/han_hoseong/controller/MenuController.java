@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -95,7 +96,7 @@ public class MenuController {
 	}
 	// 아이콘 설정하기
 	@PostMapping("/icon")
-	public ResponseEntity<Map<String, Object>> set_icons(@ModelAttribute Icon icon, @RequestParam("type") String type) {
+	public ResponseEntity<Map<String, Object>> set_icon(@ModelAttribute Icon icon, @RequestParam("type") String type) {
 		logger.info("set_icons");
 		Map<String, Object> result = new HashMap<String, Object>();
 
@@ -106,10 +107,31 @@ public class MenuController {
 		if(type.equals("create_folder")) {
 			menuService.create_folder(icon);
 			Icon latest_folder = menuService.select_latest_icon();
-			
+			result.put("icon_id", latest_folder.getIcon_id());
+		}
+		// 아이콘 생성(윈도우메뉴에서 가져옴)
+		if(type.equals("create_icon")) {
+			menuService.create_icon(icon);
+			Icon latest_folder = menuService.select_latest_icon();
+			result.put("icon_id", latest_folder.getIcon_id());
+		}
+		// 
+		if(type.equals("update_icon")) {
+			menuService.update_icon(icon);
 		}
 		
 //		menuService.set_icon(icon);
+		
+		result.put("msg", "SUCCESS");
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	// 아이콘 삭제하기
+	@DeleteMapping("/icon")
+	public ResponseEntity<Map<String, Object>> delete_icon(@RequestParam("icon_id") int icon_id) {
+		logger.info("delete_icon");
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		menuService.delete_icon(icon_id);
 		
 		result.put("msg", "SUCCESS");
 		return new ResponseEntity<>(result, HttpStatus.OK);

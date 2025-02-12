@@ -51,10 +51,28 @@
 		FROM hhs_icon i
 		LEFT JOIN hhs_menu m ON i.menu_id = m.menu_id
 		LEFT JOIN hhs_parent_menu pm ON m.parent_menu_id = pm.parent_menu_id
+		WHERE folder is NUll AND (folder_icon_id iS NUll OR folder_icon_id = 0)
+	</select>
+	<select id="get_folders">
+		SELECT * 
+		FROM hhs_icon
+		WHERE folder is NOT NUll
+	</select>
+	<select id="get_child_icons">
+		SELECT icon_id, `row`, col, folder, folder_name, folder_icon_id, i.menu_id, m.name, m.url, m.icon, m.color, pm.parent_name AS parent
+		FROM hhs_icon i
+		LEFT JOIN hhs_menu m ON i.menu_id = m.menu_id
+		LEFT JOIN hhs_parent_menu pm ON m.parent_menu_id = pm.parent_menu_id
+		WHERE folder_icon_id = #{folder_icon_id}
+		ORDER BY folder_child_order
 	</select>
 	<insert id="create_folder">
 		INSERT INTO hhs_icon(`row`, col, folder, folder_name)
 		VALUES (#{row}, #{col}, CASE WHEN #{folder} THEN 1 ELSE 0 END, #{folder_name})
+	</insert>
+	<insert id="create_icon">
+		INSERT INTO hhs_icon(`row`, col, folder_icon_id, folder_child_order, menu_id)
+		VALUES (#{row}, #{col}, #{folder_icon_id}, #{folder_child_order}, #{menu_id})
 	</insert>
 	<select id="select_latest_icon">
 		SELECT icon_id, `row`, col, folder, folder_name, folder_icon_id, i.menu_id, m.name, m.url, m.icon, m.color, pm.parent_name AS parent
@@ -64,4 +82,13 @@
 		ORDER BY icon_id DESC
 		LIMIT 1
 	</select>
+	<update id="update_icon">
+		UPDATE hhs_icon
+		SET `row` = ${row}, col = ${col}, folder_icon_id = #{folder_icon_id}, folder_child_order = #{folder_child_order}
+		WHERE icon_id = #{icon_id}
+	</update>
+	<delete id="delete_icon">
+		DELETE FROM hhs_icon
+		WHERE icon_id = #{icon_id}		
+	</delete>
 </mapper>

@@ -13,6 +13,7 @@ public class Icon extends Menu {
 	
 	private int folder_icon_id;
 	private int menu_id;
+	private int folder_child_order;
 	
 	private List<Icon> children = new ArrayList<>();
 	
@@ -20,20 +21,8 @@ public class Icon extends Menu {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Icon(int icon_id, int row, int col, String folder_name, boolean folder, int folder_icon_id,
-			int menu_id) {
-		super();
-		this.icon_id = icon_id;
-		this.row = row;
-		this.col = col;
-		this.folder_name = folder_name;
-		this.folder = folder;
-		this.folder_icon_id = folder_icon_id;
-		this.menu_id = menu_id;
-	}
-	
 	public Icon(int icon_id, int row, int col, String folder_name, boolean folder, int folder_icon_id, int menu_id,
-			List<Icon> children) {
+			int folder_child_order, List<Icon> children) {
 		super();
 		this.icon_id = icon_id;
 		this.row = row;
@@ -42,6 +31,7 @@ public class Icon extends Menu {
 		this.folder = folder;
 		this.folder_icon_id = folder_icon_id;
 		this.menu_id = menu_id;
+		this.folder_child_order = folder_child_order;
 		this.children = children;
 	}
 
@@ -108,11 +98,19 @@ public class Icon extends Menu {
 	public void setChildren(List<Icon> children) {
 		this.children = children;
 	}
+	
+	public int getFolder_child_order() {
+		return folder_child_order;
+	}
+
+	public void setFolder_child_order(int folder_child_order) {
+		this.folder_child_order = folder_child_order;
+	}
 
 	@Override
 	public String toString() {
-		return "Icon [icon_id=" + icon_id + ", row=" + row + ", col=" + col + ", folder_name=" + folder_name + ", folder=" + folder
-				+ ", folder_icon_id=" + folder_icon_id + ", menu_id=" + menu_id + "]";
+		return "Icon [icon_id=" + icon_id + ", row=" + row + ", col=" + col + ", folder_name=" + folder_name
+				+ ", folder=" + folder + ", folder_icon_id=" + folder_icon_id + ", menu_id=" + menu_id
+				+ ", folder_child_order=" + folder_child_order + ", children=" + children + "]";
 	}
-	
 }
