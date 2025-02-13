@@ -84,7 +84,8 @@
 	</select>
 	<update id="update_icon">
 		UPDATE hhs_icon
-		SET `row` = ${row}, col = ${col}, folder_icon_id = #{folder_icon_id}, folder_child_order = #{folder_child_order}
+		SET `row` = ${row}, col = ${col}, folder_name = #{folder_name}, folder_icon_id = #{folder_icon_id}, 
+		folder_child_order = #{folder_child_order}
 		WHERE icon_id = #{icon_id}
 	</update>
 	<delete id="delete_icon">
