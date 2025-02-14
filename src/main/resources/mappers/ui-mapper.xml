@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="me._hanho.han_hoseong.mapper.UiMapper">
+	<select id="get_bgInfo">
+		SELECT *
+		FROM hhs_background
+		WHERE background_id = 1
+	</select>
+	<update id="set_bgInfo">
+		UPDATE hhs_background
+		SET color = #{color}, size = #{size}, position = #{position}, `repeat` = #{repeat}, image = #{image}
+		WHERE background_id = 1
+	</update>
+</mapper>
