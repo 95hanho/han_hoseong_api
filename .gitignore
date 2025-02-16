@@ -37,3 +37,4 @@ out/
 .vscode/
 
 logs/han_hoseong
+src/main/resources/static/*
