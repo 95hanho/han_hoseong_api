@@ -13,7 +13,7 @@
 	</select>
 	<update id="setMenus">
 		UPDATE hhs_menu
-		SET icon = #{icon}, color=#{color}
+		SET icon = #{icon}, color = #{color}, custom_color = #{custom_color}
 		WHERE menu_id=#{menu_id}
 	</update>
 	<select id="get_quicks">

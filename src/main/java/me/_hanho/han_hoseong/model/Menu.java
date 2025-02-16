@@ -7,6 +7,7 @@ public class Menu {
 	private String url;
 	private String icon;
 	private String color;
+	private String custom_color;
 	// 부모메뉴 관련
 	private int parent_menu_id;
 	private String parent; // 부모메뉴 이름
@@ -18,16 +19,17 @@ public class Menu {
 	public Menu() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Menu(int menu_id, String name, String url, String icon, int parent_menu_id, String color, String parent,
-			boolean frame_on, int quick_id, int quick_menu_order) {
+
+	public Menu(int menu_id, String name, String url, String icon, String color, String custom_color,
+			int parent_menu_id, String parent, boolean frame_on, int quick_id, int quick_menu_order) {
 		super();
 		this.menu_id = menu_id;
 		this.name = name;
 		this.url = url;
 		this.icon = icon;
-		this.parent_menu_id = parent_menu_id;
 		this.color = color;
+		this.custom_color = custom_color;
+		this.parent_menu_id = parent_menu_id;
 		this.parent = parent;
 		this.frame_on = frame_on;
 		this.quick_id = quick_id;
@@ -81,6 +83,14 @@ public class Menu {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	
+	public String getCustom_color() {
+		return custom_color;
+	}
+
+	public void setCustom_color(String custom_color) {
+		this.custom_color = custom_color;
+	}
 
 	public int getQuick_id() {
 		return quick_id;
@@ -116,9 +126,9 @@ public class Menu {
 
 	@Override
 	public String toString() {
-		return "Menu [menu_id=" + menu_id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", parent_menu_id="
-				+ parent_menu_id + ", color=" + color + ", parent=" + parent + ", frame_on=" + frame_on + ", quick_id="
-				+ quick_id + ", quick_menu_order=" + quick_menu_order + "]";
+		return "Menu [menu_id=" + menu_id + ", name=" + name + ", url=" + url + ", icon=" + icon + ", color=" + color
+				+ ", custom_color=" + custom_color + ", parent_menu_id=" + parent_menu_id + ", parent=" + parent
+				+ ", frame_on=" + frame_on + ", quick_id=" + quick_id + ", quick_menu_order=" + quick_menu_order + "]";
 	}
-
+	
 }
