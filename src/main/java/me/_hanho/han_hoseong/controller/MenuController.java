@@ -1,6 +1,7 @@
 package me._hanho.han_hoseong.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
 import me._hanho.han_hoseong.model.Icon;
 import me._hanho.han_hoseong.model.Menu;
 import me._hanho.han_hoseong.model.Parent_menu;
@@ -50,9 +52,19 @@ public class MenuController {
 	}
 	// 메뉴하나 변경하기
 	@PostMapping
-	public ResponseEntity<Map<String, Object>> set_menus(@ModelAttribute Menu menu) {
+	public ResponseEntity<Map<String, Object>> set_menus(@ModelAttribute Menu menu, HttpServletRequest request) {
 		logger.info("set_menus");
 		Map<String, Object> result = new HashMap<String, Object>();
+		
+		String ipAddress = request.getRemoteAddr();
+		logger.info("ipAddress : " + ipAddress);
+		// 허용 IP 리스트
+	    List<String> allowedIps = Arrays.asList("203.245.44.21"); // 허용할 IP를 리스트에 추가
+	    // IP 제한 체크
+	    if (!allowedIps.contains(ipAddress)) {
+	        result.put("msg", "Access denied: Unauthorized IP");
+	        return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
+	    }
 		
 		menuService.setMenus(menu);
 		
@@ -73,9 +85,19 @@ public class MenuController {
 	}
 	// 퀵메뉴리스트 설정하기
 	@PostMapping("/quick")
-	public ResponseEntity<Map<String, Object>> set_quicks(@RequestBody ArrayList<Quick> quickList) {
+	public ResponseEntity<Map<String, Object>> set_quicks(@RequestBody ArrayList<Quick> quickList, HttpServletRequest request) {
 		logger.info("set_quicks");
 		Map<String, Object> result = new HashMap<String, Object>();
+		
+		String ipAddress = request.getRemoteAddr();
+		logger.info("ipAddress : " + ipAddress);
+		// 허용 IP 리스트
+	    List<String> allowedIps = Arrays.asList("203.245.44.21"); // 허용할 IP를 리스트에 추가
+	    // IP 제한 체크
+	    if (!allowedIps.contains(ipAddress)) {
+	        result.put("msg", "Access denied: Unauthorized IP");
+	        return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
+	    }
 		
 		menuService.set_quicks(quickList);
 		
@@ -96,12 +118,19 @@ public class MenuController {
 	}
 	// 아이콘 설정하기
 	@PostMapping("/icon")
-	public ResponseEntity<Map<String, Object>> set_icon(@ModelAttribute Icon icon, @RequestParam("type") String type) {
+	public ResponseEntity<Map<String, Object>> set_icon(@ModelAttribute Icon icon, @RequestParam("type") String type, HttpServletRequest request) {
 		logger.info("set_icons");
 		Map<String, Object> result = new HashMap<String, Object>();
 
-		System.out.println(type);
-		System.out.println(icon);
+		String ipAddress = request.getRemoteAddr();
+		logger.info("ipAddress : " + ipAddress);
+		// 허용 IP 리스트
+	    List<String> allowedIps = Arrays.asList("203.245.44.21"); // 허용할 IP를 리스트에 추가
+	    // IP 제한 체크
+	    if (!allowedIps.contains(ipAddress)) {
+	        result.put("msg", "Access denied: Unauthorized IP");
+	        return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
+	    }
 		
 		// 폴더 생성
 		if(type.equals("create_folder")) {
@@ -127,9 +156,19 @@ public class MenuController {
 	}
 	// 아이콘 삭제하기
 	@DeleteMapping("/icon")
-	public ResponseEntity<Map<String, Object>> delete_icon(@RequestParam("icon_id") int icon_id) {
+	public ResponseEntity<Map<String, Object>> delete_icon(@RequestParam("icon_id") int icon_id, HttpServletRequest request) {
 		logger.info("delete_icon");
 		Map<String, Object> result = new HashMap<String, Object>();
+		
+		String ipAddress = request.getRemoteAddr();
+		logger.info("ipAddress : " + ipAddress);
+		// 허용 IP 리스트
+	    List<String> allowedIps = Arrays.asList("203.245.44.21"); // 허용할 IP를 리스트에 추가
+	    // IP 제한 체크
+	    if (!allowedIps.contains(ipAddress)) {
+	        result.put("msg", "Access denied: Unauthorized IP");
+	        return new ResponseEntity<>(result, HttpStatus.FORBIDDEN);
+	    }
 		
 		menuService.delete_icon(icon_id);
 		
